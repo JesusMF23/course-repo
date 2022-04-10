@@ -6,10 +6,24 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp()); // shortcut to make code cleaner
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  // StatefulWidget is a widget that can be changed, this class is rebuilt each time state changes
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return MyAppState();
+    throw UnimplementedError();
+  }
+}
+
+class MyAppState extends State<MyApp> {
+  // this second class is the state and is not rebuilt every time state changes
   void answerQuestion() {
-    questionIndex =
-        questionIndex + 1; //we increase the index with each answer by 1
+    setState(() {
+      questionIndex = questionIndex + 1;
+    }); //we need to add a set state to the function that generates the event and include the logic for changing the state
+    //we increase the index with each answer by 1
     print('Answer chosen!');
   }
 
