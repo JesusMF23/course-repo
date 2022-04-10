@@ -7,6 +7,10 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp()); // shortcut to make code cleaner
 
 class MyApp extends StatelessWidget {
+  void answerQuestion() {
+    print('Answer chosen!');
+  }
+
   @override // Override the default build method, we ovverride the build method to return a widget of our own
   // ignore: dead_code, dead_code
   Widget build(BuildContext context) {
@@ -21,18 +25,22 @@ class MyApp extends StatelessWidget {
           title: const Text("My First App"),
         ),
         body: Column(
-          children: const [
+          children: [
             Text("The question!"),
             ElevatedButton(
-              onPressed: null,
+              onPressed:
+                  answerQuestion, //we need to call it without (), with () flutter executes the function ALWAYS, not only when onpressed
               child: Text("Answer 1"), // content inside the button
             ),
             ElevatedButton(
-              onPressed: null,
+              onPressed: () => print(
+                  "Answer 2 chosen!"), //anonymous function, you use it only once and in here
               child: Text("Answer 2"), // content inside the button
             ),
             ElevatedButton(
-              onPressed: null,
+              onPressed: () {
+                print("Answer 3 chosen!");
+              }, //anonymous function, you use it only once and in here
               child: Text("Answer 3"), // content inside the button
             ),
           ],
