@@ -8,8 +8,12 @@ void main() => runApp(MyApp()); // shortcut to make code cleaner
 
 class MyApp extends StatelessWidget {
   void answerQuestion() {
+    questionIndex =
+        questionIndex + 1; //we increase the index with each answer by 1
     print('Answer chosen!');
   }
+
+  var questionIndex = 0; // variable to keep track of question index
 
   @override // Override the default build method, we ovverride the build method to return a widget of our own
   // ignore: dead_code, dead_code
@@ -26,7 +30,7 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Text("The question!"),
+            Text(questions[questionIndex]), //could use questions.elementAt(0)
             ElevatedButton(
               onPressed:
                   answerQuestion, //we need to call it without (), with () flutter executes the function ALWAYS, not only when onpressed
