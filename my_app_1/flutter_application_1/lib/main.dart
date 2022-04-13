@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './question.dart';
 
 // void main() {
 //   runApp(MyApp());
@@ -49,7 +50,8 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Text(questions[_questionIndex]), //could use questions.elementAt(0)
+            Question(//we are using the custom widget built in question.dart
+                questions[_questionIndex]), //could use questions.elementAt(0)
             ElevatedButton(
               onPressed:
                   _answerQuestion, //we need to call it without (), with () flutter executes the function ALWAYS, not only when onpressed
