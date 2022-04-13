@@ -12,22 +12,27 @@ class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return MyAppState();
+    return _MyAppState();
     throw UnimplementedError();
   }
 }
 
-class MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> {
   // this second class is the state and is not rebuilt every time state changes
-  void answerQuestion() {
+  //alternative syntax
+  // class _MyAppState -> the _ is a private class and is not accessible outside of this file
+
+  void _answerQuestion() {
     setState(() {
-      questionIndex = questionIndex + 1;
+      //setstate forces flutter to re-render, calls build method again of the widget class where is contained
+      //flutter has mechanisms to re-render only the part of the widget that has changed
+      _questionIndex = _questionIndex + 1;
     }); //we need to add a set state to the function that generates the event and include the logic for changing the state
     //we increase the index with each answer by 1
     print('Answer chosen!');
   }
 
-  var questionIndex = 0; // variable to keep track of question index
+  var _questionIndex = 0; // variable to keep track of question index
 
   @override // Override the default build method, we ovverride the build method to return a widget of our own
   // ignore: dead_code, dead_code
@@ -44,10 +49,10 @@ class MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Text(questions[questionIndex]), //could use questions.elementAt(0)
+            Text(questions[_questionIndex]), //could use questions.elementAt(0)
             ElevatedButton(
               onPressed:
-                  answerQuestion, //we need to call it without (), with () flutter executes the function ALWAYS, not only when onpressed
+                  _answerQuestion, //we need to call it without (), with () flutter executes the function ALWAYS, not only when onpressed
               child: Text("Answer 1"), // content inside the button
             ),
             ElevatedButton(
