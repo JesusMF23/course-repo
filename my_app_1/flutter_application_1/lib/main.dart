@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './question.dart';
+import './answer.dart';
 
 // void main() {
 //   runApp(MyApp());
@@ -52,22 +53,10 @@ class _MyAppState extends State<MyApp> {
           children: [
             Question(//we are using the custom widget built in question.dart
                 questions[_questionIndex]), //could use questions.elementAt(0)
-            ElevatedButton(
-              onPressed:
-                  _answerQuestion, //we need to call it without (), with () flutter executes the function ALWAYS, not only when onpressed
-              child: Text("Answer 1"), // content inside the button
-            ),
-            ElevatedButton(
-              onPressed: () => print(
-                  "Answer 2 chosen!"), //anonymous function, you use it only once and in here
-              child: Text("Answer 2"), // content inside the button
-            ),
-            ElevatedButton(
-              onPressed: () {
-                print("Answer 3 chosen!");
-              }, //anonymous function, you use it only once and in here
-              child: Text("Answer 3"), // content inside the button
-            ),
+            Answer(
+                _answerQuestion), //we are using the custom widget built in answer.dart
+            Answer(_answerQuestion),
+            Answer(_answerQuestion),
           ],
         ),
       ),
