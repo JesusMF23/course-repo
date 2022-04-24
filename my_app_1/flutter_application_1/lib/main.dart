@@ -40,9 +40,18 @@ class _MyAppState extends State<MyApp> {
   // ignore: dead_code, dead_code
   Widget build(BuildContext context) {
     var questions = [
-      "What's your favorite color?",
-      "What's your favorite animal?",
-      "What's your favorite food?"
+      {
+        "questionText": "What's your favorite color?",
+        "answers": ["Red", "Green", "Blue"]
+      },
+      {
+        "questionText": "What's your favorite animal?",
+        "answers": ["Dog", "Cat", "Bird"]
+      },
+      {
+        "questionText": "What's your favorite food?",
+        "answers": ["Pizza", "Sushi", "Pasta", "Burger"]
+      }
     ];
     return MaterialApp(
       home: Scaffold(
@@ -52,11 +61,14 @@ class _MyAppState extends State<MyApp> {
         body: Column(
           children: [
             Question(//we are using the custom widget built in question.dart
-                questions[_questionIndex]), //could use questions.elementAt(0)
-            Answer(
-                _answerQuestion), //we are using the custom widget built in answer.dart
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
+                questions[_questionIndex]["questionText"]
+                    as String), //could use questions.elementAt(0)
+            ...(questions[_questionIndex]["answers"] as List<String>)
+                .map((answer) {
+              // the ... takes all values in a list and get them out of the list to the parent widget
+              // in this case, we add the values of a list to the parent widget list
+              return Answer(_answerQuestion, answer);
+            }).toList()
           ],
         ),
       ),
