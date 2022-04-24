@@ -26,18 +26,36 @@ class _MyAppState extends State<MyApp> {
   final _questions = [
     {
       "questionText": "What's your favorite color?",
-      "answers": ["Red", "Green", "Blue"]
+      "answers": [
+        {"text": "Red", "score": 10},
+        {"text": "Green", "score": 5},
+        {"text": "Blue", "score": 2}
+      ]
     },
     {
       "questionText": "What's your favorite animal?",
-      "answers": ["Dog", "Cat", "Bird"]
+      "answers": [
+        {"text": "Dog", "score": 10},
+        {"text": "Cat", "score": 5},
+        {"text": "Bird", "score": 2}
+      ]
     },
     {
       "questionText": "What's your favorite food?",
-      "answers": ["Pizza", "Sushi", "Pasta", "Burger"]
+      "answers": [
+        {"text": "Pizza", "score": 10},
+        {"text": "Sushi", "score": 5},
+        {"text": "Pasta", "score": 3},
+        {"text": "Burger", "score": 1}
+      ]
     }
   ];
-  void _answerQuestion() {
+
+  var _questionIndex = 0;
+  var _totalScore = 0;
+
+  void _answerQuestion(int score) {
+    _totalScore += score;
     setState(() {
       //setstate forces flutter to re-render, calls build method again of the widget class where is contained
       //flutter has mechanisms to re-render only the part of the widget that has changed
@@ -52,7 +70,7 @@ class _MyAppState extends State<MyApp> {
     print('Answer chosen!');
   }
 
-  var _questionIndex = 0; // variable to keep track of question index
+  // variable to keep track of question index
 
   @override // Override the default build method, we ovverride the build method to return a widget of our own
   // ignore: dead_code, dead_code
@@ -68,7 +86,7 @@ class _MyAppState extends State<MyApp> {
                 answerQuestion: _answerQuestion,
                 questionIndex: _questionIndex,
               )
-            : Result(),
+            : Result(_totalScore),
       ),
     ); // body only admits 1 widget
   }
