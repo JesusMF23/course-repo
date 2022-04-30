@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './quiz.dart';
 import './result.dart';
+import './apirequest.dart';
 
 // void main() {
 //   runApp(MyApp());
@@ -23,36 +24,37 @@ class _MyAppState extends State<MyApp> {
   // this second class is the state and is not rebuilt every time state changes
   //alternative syntax
   // class _MyAppState -> the _ is a private class and is not accessible outside of this file
-  final _questions = [
-    {
-      "questionText": "What's your favorite color?",
-      "answers": [
-        {"text": "Red", "score": 10},
-        {"text": "Green", "score": 5},
-        {"text": "Blue", "score": 2}
-      ]
-    },
-    {
-      "questionText": "What's your favorite animal?",
-      "answers": [
-        {"text": "Dog", "score": 10},
-        {"text": "Cat", "score": 5},
-        {"text": "Bird", "score": 2}
-      ]
-    },
-    {
-      "questionText": "What's your favorite food?",
-      "answers": [
-        {"text": "Pizza", "score": 10},
-        {"text": "Sushi", "score": 5},
-        {"text": "Pasta", "score": 3},
-        {"text": "Burger", "score": 1}
-      ]
-    }
-  ];
+  // final _questions = [
+  //   {
+  //     "questionText": "What's your favorite color?",
+  //     "answers": [
+  //       {"text": "Red", "score": 10},
+  //       {"text": "Green", "score": 5},
+  //       {"text": "Blue", "score": 2}
+  //     ]
+  //   },
+  //   {
+  //     "questionText": "What's your favorite animal?",
+  //     "answers": [
+  //       {"text": "Dog", "score": 10},
+  //       {"text": "Cat", "score": 5},
+  //       {"text": "Bird", "score": 2}
+  //     ]
+  //   },
+  //   {
+  //     "questionText": "What's your favorite food?",
+  //     "answers": [
+  //       {"text": "Pizza", "score": 10},
+  //       {"text": "Sushi", "score": 5},
+  //       {"text": "Pasta", "score": 3},
+  //       {"text": "Burger", "score": 1}
+  //     ]
+  //   }
+  // ];
 
   var _questionIndex = 0;
   var _totalScore = 0;
+  final _questionslength = itemCount;
 
   void _resetQuiz() {
     setState(() {
